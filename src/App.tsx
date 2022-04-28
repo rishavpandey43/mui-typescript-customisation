@@ -1,25 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import PayMuiTheme from './theme/theme';
+import { StyledEngineProvider } from '@mui/material/styles';
+
+import Stack from '@mui/material/Stack';
+
+import Button from '@mui/material/Button';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StyledEngineProvider injectFirst>
+      <PayMuiTheme>
+        <Stack m={5} spacing={2} direction="row">
+          <Button variant="contained">Default</Button>
+          <Button variant="dashed">Dashed</Button>
+        </Stack>
+      </PayMuiTheme>
+    </StyledEngineProvider>
   );
 }
 
