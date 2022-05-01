@@ -4,6 +4,10 @@ declare module '@mui/material/Chip' {
   interface ChipPropsVariantOverrides {
     square: true;
   }
+  // ! below line throwing error
+  // interface ChipProps {
+  //   status?: 'draft' | 'processing';
+  // }
 }
 
 export const themeObject = createTheme({
@@ -16,6 +20,7 @@ export const themeObject = createTheme({
             borderRadius: '4px',
           },
         },
+        // ! uncomment the below code to demonstrate the issue of typescript.
         // {
         //   props: { status: 'draft' },
         //   style: {
@@ -32,16 +37,6 @@ export const themeObject = createTheme({
         //   },
         // },
       ],
-      styleOverrides: {
-        root: {
-          height: '24px',
-        },
-        label: {
-          fontSize: '12px',
-          lineHeight: '16px',
-          padding: '4px 8px',
-        },
-      },
     },
   },
 });
