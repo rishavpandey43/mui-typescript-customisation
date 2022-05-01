@@ -1,6 +1,15 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-const customizedMaterialStyle = {
+declare module '@mui/material/Chip' {
+  // @ts-ignore
+  interface ChipProps {
+    square?: boolean;
+    type?: 'draft' | 'processing';
+    clickable?: boolean;
+  }
+}
+
+export const themeObject = createTheme({
   components: {
     MuiChip: {
       variants: [
@@ -11,14 +20,14 @@ const customizedMaterialStyle = {
           },
         },
         {
-          props: { status: 'draft' },
+          props: { type: 'draft' },
           style: {
             color: '#2D9CDB',
             backgroundColor: '#EBF6FF',
           },
         },
         {
-          props: { status: 'draft', clickable: true },
+          props: { type: 'draft', clickable: true },
           style: {
             '&:focus, &:hover': {
               color: '#028CDB',
@@ -27,30 +36,23 @@ const customizedMaterialStyle = {
           },
         },
         {
-          props: { status: 'processing' },
+          props: { type: 'processing' },
           style: {
             color: '#F2994A',
             backgroundColor: '#FEF5ED',
           },
         },
       ],
-      styleOverrides: {
-        root: {
-          height: '24px',
-        },
-        label: {
-          fontSize: '12px',
-          lineHeight: '16px',
-          padding: '4px 8px',
-        },
-      },
     },
   },
-};
+});
 
-export const themeObject = createTheme(customizedMaterialStyle);
+interface PayMuiThemeType {
+  children: React.ReactNode;
+}
 
-const PayMuiThemeJSX = ({ children }) => (
+const MuiTheme = ({ children }: PayMuiThemeType) => (
   <ThemeProvider theme={themeObject}>{children}</ThemeProvider>
 );
-export default PayMuiThemeJSX;
+
+export default MuiTheme;
